@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Life OS - Personal Life Tracking Web App
 
 A comprehensive full-stack web application that helps students and professionals track time, tasks, money, fitness, and learning in one place. Focused on daily reality and awareness rather than complex planning.
@@ -238,3 +239,7 @@ All data is stored in MongoDB cloud database. Your data is secure, backed up, an
 ## License
 
 MIT License - feel free to use and modify as needed.
+=======
+# LIFE-OS
+Full-stack personal productivity tracking web application built with React, Node.js, Express, and MongoDB. Track time, tasks, money, fitness, learning, and attendance in one place.
+>>>>>>> 789bfc81ac9b9b52acb5486317c334756d3d99ab
