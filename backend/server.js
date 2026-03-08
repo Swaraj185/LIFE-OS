@@ -12,6 +12,9 @@ import lendingRoutes from './routes/lending.js';
 import fitnessRoutes from './routes/fitness.js';
 import learningRoutes from './routes/learning.js';
 import attendanceRoutes from './routes/attendance.js';
+import sleepRoutes from './routes/sleep.js';
+import profileRoutes from './routes/profile.js';
+import productivityRoutes from './routes/productivity.js';
 
 dotenv.config();
 
@@ -34,6 +37,9 @@ app.use('/api/lending', lendingRoutes);
 app.use('/api/fitness', fitnessRoutes);
 app.use('/api/learning', learningRoutes);
 app.use('/api/attendance', attendanceRoutes);
+app.use('/api/sleep', sleepRoutes);
+app.use('/api/profile', profileRoutes);
+app.use('/api/productivity', productivityRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

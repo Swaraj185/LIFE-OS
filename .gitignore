@@ -1,34 +1,99 @@
-# Dependencies
+# ------------------------------
+# Node Modules
+# ------------------------------
 node_modules/
 
-# Environment variables
+# ------------------------------
+# Environment Variables
+# ------------------------------
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# Build outputs
-dist/
-build/
+# ------------------------------
+# Logs
+# ------------------------------
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# IDE
+# ------------------------------
+# Runtime Data
+# ------------------------------
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# ------------------------------
+# Dependency directories
+# ------------------------------
+jspm_packages/
+
+# ------------------------------
+# Build folders (React / Node)
+# ------------------------------
+build/
+dist/
+.next/
+out/
+
+# React build output
+frontend/build/
+
+# ------------------------------
+# Coverage directory
+# ------------------------------
+coverage/
+.nyc_output/
+
+# ------------------------------
+# Cache
+# ------------------------------
+.cache/
+.parcel-cache/
+.eslintcache
+
+# ------------------------------
+# IDE / Editors
+# ------------------------------
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
+# ------------------------------
+# OS Files
+# ------------------------------
 .DS_Store
 Thumbs.db
 
-# Testing
-coverage/
-.nyc_output/
-
-# Misc
+# ------------------------------
+# Certificates / Keys
+# ------------------------------
 *.pem
-.cache/
+*.key
+*.crt
 
+# ------------------------------
+# MongoDB local files
+# ------------------------------
+*.db
+*.sqlite
+
+# ------------------------------
+# Temporary files
+# ------------------------------
+tmp/
+temp/
+
+# ------------------------------
+# Optional uploads folder
+# ------------------------------
+uploads/

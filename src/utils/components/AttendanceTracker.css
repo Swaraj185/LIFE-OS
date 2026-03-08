@@ -194,18 +194,12 @@
 }
 
 .stat-card {
-  padding: 1.5rem 1.75rem;
+  padding: 1.5rem;
   background: #f7fafc;
   border-radius: 12px;
   border: 2px solid #e2e8f0;
   text-align: center;
   transition: all 0.2s;
-  box-sizing: border-box;
-  overflow: hidden; /* prevent children from overflowing */
-  min-height: 140px; /* keep consistent card height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .stat-card:hover {
@@ -229,13 +223,10 @@
 
 .stat-details {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap; /* allow items to wrap instead of overflowing */
+  flex-direction: column;
+  gap: 0.25rem;
   font-size: 0.85rem;
   color: #666;
-  margin-top: 0.25rem;
 }
 
 .stat-present {
@@ -259,8 +250,6 @@
   padding-top: 0.5rem;
   border-top: 1px solid #e2e8f0;
   font-weight: 500;
-  width: 100%;
-  text-align: center; /* keep the total centered */
 }
 
 .loading {

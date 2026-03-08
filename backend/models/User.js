@@ -16,6 +16,29 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  avatar: {
+    type: String,
+    default: '',
+  },
+  preferences: {
+    idealSleepHours: {
+      type: Number,
+      default: 8,
+    },
+    dailyFocusTimeGoal: {
+      type: Number, // in minutes
+      default: 240, // 4 hours
+    },
+    preferredWakeUpTime: {
+      type: String,
+      default: '07:00',
+    },
+    theme: {
+      type: String,
+      enum: ['light', 'dark'],
+      default: 'light',
+    },
+  },
 }, {
   timestamps: true,
 });

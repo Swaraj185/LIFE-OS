@@ -6,9 +6,6 @@ import api from '../utils/api'
 import './Dashboard.css'
 
 export default function Dashboard() {
-  const [user, setUser] = useState(null)
-  const [productivityScore, setProductivityScore] = useState(null)
-  const [insights, setInsights] = useState([])
   const [todayStats, setTodayStats] = useState({
     timeTracked: 0,
     tasksCompleted: 0,
@@ -16,42 +13,14 @@ export default function Dashboard() {
     expensesTotal: 0,
     fitnessLogged: false,
     learningLogged: false,
-    sleepLogged: false,
-    sleepHours: 0,
     attendancePercentage: 0,
     attendanceToday: 0
   })
 
   useEffect(() => {
-    loadUser()
     updateTodayStats()
     loadAttendanceStats()
-    loadSleepStat()
-    loadProductivityData()
   }, [])
-
-  const loadUser = async () => {
-    try {
-      const currentUser = await api.getCurrentUser()
-      setUser(currentUser)
-    } catch (error) {
-      console.error('Error loading user:', error)
-    }
-  }
-
-  const loadProductivityData = async () => {
-    try {
-      const today = format(new Date(), 'yyyy-MM-dd')
-      const [scoreData, insightsData] = await Promise.all([
-        api.getProductivityScore(today),
-        api.getProductivityInsights(today)
-      ])
-      setProductivityScore(scoreData)
-      setInsights(insightsData.insights || [])
-    } catch (error) {
-      console.error('Error loading productivity data:', error)
-    }
-  }
 
   const loadAttendanceStats = async () => {
     try {
@@ -82,20 +51,6 @@ export default function Dashboard() {
     }
   }
 
-  const loadSleepStat = async () => {
-    try {
-      const today = format(new Date(), 'yyyy-MM-dd')
-      const sleep = await api.getSleepByDate(today)
-      if (sleep) {
-        setTodayStats(prev => ({ ...prev, sleepLogged: true, sleepHours: sleep.totalSleepHours || 0 }))
-      } else {
-        setTodayStats(prev => ({ ...prev, sleepLogged: false, sleepHours: 0 }))
-      }
-    } catch (error) {
-      console.error('Failed to load sleep:', error)
-    }
-  }
-
   const updateTodayStats = () => {
     const data = getData()
     const today = format(new Date(), 'yyyy-MM-dd')
@@ -118,15 +73,14 @@ export default function Dashboard() {
     const fitnessLogged = data.fitnessLogs.some(f => f.date === today)
     const learningLogged = data.learningLogs.some(l => l.date === today)
 
-    setTodayStats(prev => ({
-      ...prev,
+    setTodayStats({
       timeTracked,
       tasksCompleted,
       tasksTotal,
       expensesTotal,
       fitnessLogged,
       learningLogged
-    }))
+    })
   }
 
   const statCards = [
@@ -171,14 +125,6 @@ export default function Dashboard() {
       color: '#9f7aea'
     },
     {
-      title: 'Sleep',
-      value: todayStats.sleepLogged ? `${todayStats.sleepHours}h` : 'Not logged',
-      subtitle: 'today',
-      link: '/sleep',
-      icon: '😴',
-      color: '#805ad5'
-    },
-    {
       title: 'Attendance',
       value: `${todayStats.attendancePercentage}%`,
       subtitle: `${todayStats.attendanceToday} classes today`,
@@ -188,57 +134,12 @@ export default function Dashboard() {
     }
   ]
 
-  const getScoreColor = (score) => {
-    if (score >= 70) return '#48bb78' // green
-    if (score >= 50) return '#ed8936' // yellow
-    return '#f56565' // red
-  }
-
-  const getScoreLabel = (score) => {
-    if (score >= 70) return 'Good'
-    if (score >= 50) return 'Average'
-    return 'Low'
-  }
-
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-        <h1>Hi, {user?.name || 'User'} 👋</h1>
+        <h1>Today's Overview</h1>
         <p className="dashboard-date">{format(new Date(), 'EEEE, MMMM d, yyyy')}</p>
       </div>
-
-      {productivityScore && (
-        <div className="productivity-score-card">
-          <div className="score-main">
-            <div className="score-value" style={{ color: getScoreColor(productivityScore.score) }}>
-              {productivityScore.score}
-            </div>
-            <div className="score-label">
-              <span className="score-status" style={{ color: getScoreColor(productivityScore.score) }}>
-                {getScoreLabel(productivityScore.score)}
-              </span>
-              <span className="score-title">Productivity Score</span>
-            </div>
-          </div>
-          {productivityScore.scoreChange !== null && (
-            <div className="score-change">
-              {productivityScore.scoreChange > 0 ? '+' : ''}
-              {productivityScore.scoreChange.toFixed(1)}% vs yesterday
-            </div>
-          )}
-        </div>
-      )}
-
-      {insights.length > 0 && (
-        <div className="insights-card">
-          <h3 className="insights-title">💡 Insights</h3>
-          <ul className="insights-list">
-            {insights.map((insight, index) => (
-              <li key={index} className="insight-item">{insight}</li>
-            ))}
-          </ul>
-        </div>
-      )}
 
       <div className="stats-grid">
         {statCards.map((card, index) => (

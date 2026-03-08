@@ -10,6 +10,8 @@ import FitnessTracker from './components/FitnessTracker'
 import LearningTracker from './components/LearningTracker'
 import AttendanceTracker from './components/AttendanceTracker'
 import WeeklyReport from './components/WeeklyReport'
+import SleepTracker from './components/SleepTracker'
+import Profile from './components/Profile'
 import Auth from './components/Auth'
 
 import './App.css'
@@ -27,6 +29,8 @@ function Navigation() {
     { path: '/fitness', label: 'Fitness', icon: '💪' },
     { path: '/learning', label: 'Learning', icon: '📚' },
     { path: '/attendance', label: 'Attendance', icon: '✅' },
+    { path: '/sleep', label: 'Sleep', icon: '😴' },
+    { path: '/profile', label: 'Profile', icon: '👤' },
     { path: '/report', label: 'Report', icon: '📈' },
   ]
 
@@ -131,6 +135,8 @@ function App() {
             <Route path="/fitness" element={<FitnessTracker />} />
             <Route path="/learning" element={<LearningTracker />} />
             <Route path="/attendance" element={<AttendanceTracker />} />
+            <Route path="/sleep" element={<SleepTracker />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/report" element={<WeeklyReport />} />
           </Routes>
         </main>

@@ -1,11 +1,14 @@
-<<<<<<< HEAD
 # Life OS - Personal Life Tracking Web App
 
-A comprehensive full-stack web application that helps students and professionals track time, tasks, money, fitness, and learning in one place. Focused on daily reality and awareness rather than complex planning.
+A full-stack web application that helps students and professionals track time, tasks, money, fitness, learning, sleep, and attendance in one place. Focused on daily reality and awareness rather than complex planning.
 
 ## Features
 
 ### 📊 Dashboard
+- Personalized greeting with your name
+- Productivity score (0-100) with color indicators
+- Score comparison with previous day
+- Basic insights and suggestions
 - Overview of today's activities across all categories
 - Quick access to all tracking modules
 - Real-time statistics
@@ -63,6 +66,36 @@ A comprehensive full-stack web application that helps students and professionals
 - View attendance statistics and consistency
 - Delete attendance records
 
+### 😴 Sleep Tracker
+- Log sleep start time and wake-up time
+- Automatic calculation of total sleep hours
+- Sleep quality rating (1-5 or Poor/Average/Good)
+- Optional nap duration tracking
+- Sleep status indicator (Good/Low/Poor)
+- Edit or delete sleep logs
+
+### 👤 Profile
+- User profile with name and email
+- Optional avatar image
+- Daily preferences:
+  - Ideal sleep hours
+  - Daily focus time goal (in minutes)
+  - Preferred wake-up time
+  - Light/Dark mode toggle
+- Productivity score tracking
+
+### 📊 Productivity Score
+- Daily score calculated from multiple factors:
+  - Tasks completed (25%)
+  - Focused time vs goal (25%)
+  - Learning activity (15%)
+  - Sleep hours and quality (15%)
+  - Fitness (10%)
+  - Attendance (10%)
+- Color-coded indicators (green/yellow/red)
+- Comparison with previous day showing percentage change
+- Basic insights and suggestions based on your data
+
 ### 📈 Weekly Report
 - Comprehensive weekly analysis
 - Time tracking analysis
@@ -94,6 +127,7 @@ A comprehensive full-stack web application that helps students and professionals
 - **JWT** - Authentication tokens
 - **bcryptjs** - Password hashing
 - **CORS** - Cross-origin resource sharing
+- **date-fns** - Date manipulation
 
 ## Getting Started
 
@@ -168,12 +202,14 @@ npm start
 ## Usage
 
 1. **Authentication**: The app will first present a login/sign-up page. Create an account or log in.
-2. **Daily Tracking**: Navigate to each module (Activities, Tasks, Money, Lending, Fitness, Learning, Attendance) to log your daily activities.
-3. **Money Lending**: Use the Lending tracker to record money you give or take from others.
-4. **Money Summary**: Check the Money Tracker to see lending totals in the summary.
-5. **Quick Logging**: Use quick log buttons for common activities to save time.
-6. **Delete Entries**: Click the '×' button next to any entry to delete it (with a confirmation prompt).
-7. **Weekly Review**: Visit the Report page at the end of each week to see your patterns and insights.
+2. **Profile Setup**: Go to Profile to set your preferences like ideal sleep hours, focus time goals, and preferred wake-up time.
+3. **Daily Tracking**: Navigate to each module (Activities, Tasks, Money, Lending, Fitness, Learning, Attendance, Sleep) to log your daily activities.
+4. **Sleep Tracking**: Log your sleep times each day. The app calculates total hours automatically and shows your sleep status.
+5. **Productivity Score**: Check the Dashboard to see your daily productivity score and how it compares to yesterday.
+6. **Money Lending**: Use the Lending tracker to record money you give or take from others.
+7. **Quick Logging**: Use quick log buttons for common activities to save time.
+8. **Delete Entries**: Click the delete button next to any entry to remove it (with a confirmation prompt).
+9. **Weekly Review**: Visit the Report page at the end of each week to see your patterns and insights.
 
 ## API Endpoints
 
@@ -224,6 +260,21 @@ npm start
 - `PUT /api/attendance/:id` - Update attendance record
 - `DELETE /api/attendance/:id` - Delete attendance record
 
+### Sleep
+- `GET /api/sleep` - Get all sleep logs
+- `GET /api/sleep/date/:date` - Get sleep log for specific date
+- `POST /api/sleep` - Create sleep log
+- `PUT /api/sleep/:id` - Update sleep log
+- `DELETE /api/sleep/:id` - Delete sleep log
+
+### Profile
+- `GET /api/profile` - Get user profile
+- `PUT /api/profile` - Update user profile
+
+### Productivity
+- `GET /api/productivity/score/:date` - Get productivity score for date
+- `GET /api/productivity/insights/:date` - Get insights for date
+
 ## Data Storage
 
 All data is stored in MongoDB cloud database. Your data is secure, backed up, and accessible from any device once you log in.
@@ -235,11 +286,8 @@ All data is stored in MongoDB cloud database. Your data is secure, backed up, an
 - **Awareness**: Visual reports help you see patterns and time waste
 - **Discipline**: Consistency tracking encourages better habits
 - **Weekly Improvement**: Weekly reports show progress and areas for improvement
+- **Productivity Insights**: Score system helps identify what affects your daily productivity
 
 ## License
 
 MIT License - feel free to use and modify as needed.
-=======
-# LIFE-OS
-Full-stack personal productivity tracking web application built with React, Node.js, Express, and MongoDB. Track time, tasks, money, fitness, learning, and attendance in one place.
->>>>>>> 789bfc81ac9b9b52acb5486317c334756d3d99ab

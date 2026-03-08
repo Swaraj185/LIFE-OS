@@ -336,6 +336,89 @@ const api = {
     if (!response.ok) throw new Error('Failed to delete attendance record');
     return await response.json();
   },
+
+  // Sleep
+  getSleep: async () => {
+    const response = await fetch(`${API_URL}/sleep`, {
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to fetch sleep logs');
+    return await response.json();
+  },
+
+  getSleepByDate: async (date) => {
+    const response = await fetch(`${API_URL}/sleep/date/${date}`, {
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to fetch sleep log');
+    const data = await response.json();
+    return data || null;
+  },
+
+  createSleep: async (sleep) => {
+    const response = await fetch(`${API_URL}/sleep`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(sleep),
+    });
+    if (!response.ok) throw new Error('Failed to create sleep log');
+    return await response.json();
+  },
+
+  updateSleep: async (id, updates) => {
+    const response = await fetch(`${API_URL}/sleep/${id}`, {
+      method: 'PUT',
+      headers: getHeaders(),
+      body: JSON.stringify(updates),
+    });
+    if (!response.ok) throw new Error('Failed to update sleep log');
+    return await response.json();
+  },
+
+  deleteSleep: async (id) => {
+    const response = await fetch(`${API_URL}/sleep/${id}`, {
+      method: 'DELETE',
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to delete sleep log');
+    return await response.json();
+  },
+
+  // Profile
+  getProfile: async () => {
+    const response = await fetch(`${API_URL}/profile`, {
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to fetch profile');
+    return await response.json();
+  },
+
+  updateProfile: async (updates) => {
+    const response = await fetch(`${API_URL}/profile`, {
+      method: 'PUT',
+      headers: getHeaders(),
+      body: JSON.stringify(updates),
+    });
+    if (!response.ok) throw new Error('Failed to update profile');
+    return await response.json();
+  },
+
+  // Productivity
+  getProductivityScore: async (date) => {
+    const response = await fetch(`${API_URL}/productivity/score/${date}`, {
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to fetch productivity score');
+    return await response.json();
+  },
+
+  getProductivityInsights: async (date) => {
+    const response = await fetch(`${API_URL}/productivity/insights/${date}`, {
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to fetch insights');
+    return await response.json();
+  },
 };
 
 export default api;
