@@ -36,7 +36,7 @@ function Navigation() {
 
   const handleLogout = () => {
     localStorage.removeItem('lifeos_token')
-    navigate('/auth')
+    navigate('/')
     window.location.reload()
   }
 
